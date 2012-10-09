@@ -1,4 +1,4 @@
-class DonutPlugin < Engine::Plugin
+class DonutPlugin < ZombieGame::Plugin
   filter_attribute Player, :name, :invert_display_name
 
   def self.invert_display_name(name)

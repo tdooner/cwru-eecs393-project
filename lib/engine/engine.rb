@@ -1,8 +1,4 @@
-module Engine
-  ##
-  # This are the magical methods we will define to provide a nice Domain
-  # Specific Language for plugin authors.
-  #
+module ZombieGame
   class Plugin
     # Class Methods
     class << self
@@ -34,7 +30,7 @@ module Engine
     end
   end
 
-  class Game
+  class Engine
     def initialize
       # Load all the plugins, return a list of the intended classnames.
       #
