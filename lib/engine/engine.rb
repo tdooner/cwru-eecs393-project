@@ -2,31 +2,58 @@ module ZombieGame
   class Plugin
     # Class Methods
     class << self
-      @@hooks = Hash.new([])    # Dictionary that defaults to [] if key not found.
+      ##
+      # This are the magical methods we will define to provide a nice Domain
+      # Specific Language for plugin authors.
+      #
+      # Since all Plugins will extend ZombieGame::Plugin, they can use these
+      # methods as the way of interfacing with the plugin.
+      #
+      def filter_attribute(classname, attrname, callback)
+        # TODO: fix this line to not be so ugly:
+        classname.class_variable_get("@@hooks")[attrname] =
+          (classname.class_variable_get("@@hooks")[attrname] || []) << [self, callback]
 
-      def filter_attribute(classname, attrname, callback)   # Maybe this belongs on Models instead?
-        @@hooks[[classname, attrname]] = @@hooks[[classname, attrname]].push([self, callback])
-        puts "Registered hook in #{self} for #{classname}.#{attrname} -> :#{callback}"
+        puts "Registered hook in #{self} for #{classname}.#{attrname} -> #{self}.#{callback}"
+        puts "  now we're filtering... #{classname.class_variable_get("@@hooks").inspect}"
       end
 
-      def perform_filters(klass, attrname)
-        puts @@hooks.inspect
-        puts "performing filters for #{klass.class}.#{attrname}"
-        @@hooks[[klass.class, attrname]].inject(klass.send(attrname)) do |a, (plugin_name, method_name)|
-          puts "calling #{plugin_name}.#{method_name}"
-          a = plugin_name.send(method_name.to_sym, a)
-        end
+      #####
+      # Some other examples of the DSL we can provide...
+      #####
+      def register_page(args)
+        # Implement me....
+      end
+
+      def register_hook(event, callback)
+        # Implement me....
       end
     end
   end
 
-  class Model
+  module FilteredModel
+    @@hooks = {}
+
     def get_attribute(attrname, apply_filters = true)
       if apply_filters
-        Engine::Plugin.perform_filters(self, attrname)
+        Plugin.perform_filters(self, attrname)
       else
-        self.send(attrname)
+        self.send(attrname)       # Calls the method of the attribute, i.e. getting the attribute from the ORM
       end
+    end
+
+    def apply_filters
+      self.class.class_variable_get("@@hooks").each do |attr, filter_list|
+        # Use the setter to update the attribute of the models in memory with
+        # their filtered values.
+        self.send("#{attr}=",
+                  filter_list.inject(self.send(attr)) do |a, (plugin_name, method_name)|
+                    puts "calling #{plugin_name}.#{method_name}"
+                    a = plugin_name.send(method_name.to_sym, a)
+                  end
+                 )
+      end
+      self
     end
   end
 
