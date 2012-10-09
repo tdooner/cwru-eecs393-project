@@ -69,5 +69,9 @@ module ZombieGame
         File.basename(file, '.rb').camelize
       end
     end
+
+    def get_players
+      Player.all.map{ |x| x.apply_filters }
+    end
   end
 end

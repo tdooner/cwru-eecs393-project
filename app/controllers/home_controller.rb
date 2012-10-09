@@ -1,8 +1,6 @@
 class HomeController < ActionController::Base
   def index
-    # The homepage
-    p = Player.new
-    p.name = 'Tom Dooner'     # In real life this will be pulled from the DB
-    render :text => p.get_attribute(:name)
+    # An example call to the engine
+    render :text => ENGINE.get_players
   end
 end
