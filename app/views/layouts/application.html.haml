@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %title ZombieGameEngine
+    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0' }
+    =stylesheet_link_tag    "application", :media => "all"
+    =javascript_include_tag "application"
+    =csrf_meta_tags
+    :css
+      body, html {
+      }
+      .jumbotron {
+        padding-top: 20px;
+        padding-bottom: 40px;
+        position: relative;
+        background-color: #58FF3A;
+      }
+  %body
+    %header.jumbotron
+      .container
+        .row
+          .span8
+            %h1 Case HvZ
+          .span4
+            Home | Scoreboard | Log In
+    .container
+      .row
+        .span4.visible-desktop
+          Left Column Contents Go Here
+        .span8
+          =yield
