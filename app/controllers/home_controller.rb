@@ -3,6 +3,6 @@ class HomeController < ActionController::Base
 
   def index
     # An example call to the engine
-    @text = ENGINE.get_players
+    @players = ENGINE.get_players
   end
 end
