@@ -7,5 +7,4 @@ class Player
 
   key :name, String
   key :caseid, String
-  #attr_accessor :name   # Defines getter and setter for "Player name"
 end

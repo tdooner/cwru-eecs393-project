@@ -8,6 +8,10 @@
       %tr
         %td= p.caseid
         %td= p.name
+%h2 Game List
+%ul
+-@games.each do |g|
+  %li= link_to g.name, game_url(g)
 /
   :markdown
     For now, to create a new player, enter the Mongo database

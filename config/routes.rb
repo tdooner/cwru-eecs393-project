@@ -5,6 +5,13 @@ ZombieGameEngine::Application.routes.draw do
   devise_scope :user do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => 'destroy_user_session'
   end
+
+  resources :games do
+    member do
+      get :register
+    end
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
