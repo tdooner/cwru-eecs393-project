@@ -39,7 +39,7 @@
               =flash[:alert]
               =flash[:notice]
       .row
-        .span4.visible-desktop
+        .span4.hidden-phone
           - if user_signed_in?
             .well
               =image_tag current_user.image_url, :style => "float:left; margin-right: 20px;"
