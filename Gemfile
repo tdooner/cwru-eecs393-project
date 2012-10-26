@@ -6,6 +6,13 @@ gem 'bson_ext'
 gem 'haml'
 gem 'rdiscount'
 
+# Gems for user authentication:
+gem 'devise'
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-facebook'
+gem 'mm-devise'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -21,6 +28,10 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'debugger'
 end
 
 gem 'jquery-rails'

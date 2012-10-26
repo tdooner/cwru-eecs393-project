@@ -21,11 +21,21 @@
         .row
           .span8
             %h1 Case HvZ
-          .span4
-            Home | Scoreboard | Log In
+            %h3 Humans vs. Zombies
+        .row
+          .span4.offset8
+            :plain
+              Home | Scoreboard |
+            - if user_signed_in?
+              = link_to "Log Out", destroy_user_session_path
+            - else
+              = link_to "Log in with Facebook", user_omniauth_authorize_path(:facebook)
+    =flash[:error]
+    =flash[:alert]
+    =flash[:notice]
     .container
       .row
         .span4.visible-desktop
-          Left Column Contents Go Here
+          =current_user.inspect
         .span8
           =yield
