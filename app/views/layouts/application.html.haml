@@ -52,6 +52,12 @@
               =flash[:error]
               =flash[:alert]
               =flash[:notice]
+      - if user_signed_in?
+        .row.visible-phone
+          .span12
+            .well
+              =image_tag current_user.image_url, :style => "float:left; margin-right: 20px;"
+              %h2= current_user.name
       .row
         .span4.hidden-phone
           - if user_signed_in?
