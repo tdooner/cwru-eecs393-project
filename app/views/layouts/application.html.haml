@@ -21,7 +21,7 @@
         .row
           .span8
             %h1 Case HvZ
-            %h3 Humans vs. Zombies
+            %h3 Zombie Game Engine
         .row
           .span4.offset8
             :plain
@@ -30,12 +30,24 @@
               = link_to "Log Out", destroy_user_session_path
             - else
               = link_to "Log in with Facebook", user_omniauth_authorize_path(:facebook)
-    =flash[:error]
-    =flash[:alert]
-    =flash[:notice]
     .container
+      - if flash[:error] || flash[:alert] || flash[:notice]
+        .row
+          .span12
+            .alert
+              =flash[:error]
+              =flash[:alert]
+              =flash[:notice]
       .row
         .span4.visible-desktop
-          =current_user.inspect
+          - if user_signed_in?
+            .well
+              =image_tag current_user.image_url, :style => "float:left; margin-right: 20px;"
+              %h2= current_user.name
+              %ul
+                %li View Player Profile
+                %li Submit a Tag
+                %li Check In
+                %li ...
         .span8
           =yield
