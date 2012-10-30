@@ -1,0 +1,8 @@
+%h2= @game.name
+%h3 Players
+=@game.players.inspect
+%h3 Registration
+-if user_signed_in?
+  =link_to 'Register for game', register_game_url(@game)
+-else
+  Please Log In to register
