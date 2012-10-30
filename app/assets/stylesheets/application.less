@@ -1,0 +1,40 @@
+/*
+ * This is the global stylesheet file! Add custom styles for individual
+ * pages in files for that page. e.g. if you want custom styles for the
+ * scoreboard (`games` controller, `show` action), create
+ * app/assets/stylesheets/games/show.less and then in
+ * app/views/games/show.html.haml put 
+ *  - content_for :stylesheets do
+ *    =stylesheet_link_tag 'games/show'
+ *
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/responsive";
+@import "shared/fonts";
+
+// Customize variables for CaseHvZ
+@headingsFontFamily: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@headingsFontWeight: normal;
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Override that one silly padding thing:
+@media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+}
+
+// Headings
