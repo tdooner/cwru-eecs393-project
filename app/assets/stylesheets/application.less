@@ -3,7 +3,7 @@
  * pages in files for that page. e.g. if you want custom styles for the
  * scoreboard (`games` controller, `show` action), create
  * app/assets/stylesheets/games/show.less and then in
- * app/views/games/show.html.haml put 
+ * app/views/games/show.html.haml put
  *  - content_for :stylesheets do
  *    =stylesheet_link_tag 'games/show'
  *
@@ -20,15 +20,9 @@
  */
 @import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap/responsive";
+
 @import "shared/fonts";
-
-// Customize variables for CaseHvZ
-@headingsFontFamily: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-@headingsFontWeight: normal;
-
-// Set the correct sprite paths
-@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
-@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+@import "shared/variables";
 
 // Override that one silly padding thing:
 @media (max-width: 767px) {
@@ -37,4 +31,26 @@
   }
 }
 
-// Headings
+// Headers
+.top-bar {
+  background-color: @hvzColor;
+  margin-bottom: 20px;
+}
+.top-bar h1 {
+  font-family: @aLoveOfThunder;
+}
+.top-bar .nav {
+  margin-bottom: 0;
+}
+.top-bar .nav > li > a {
+  line-height: 40px;
+  font-size: 20px;
+  .border-radius(0);
+
+  &:hover {
+    background-color: lighten(@hvzColor, 10%);
+  }
+}
+.top-bar a {
+  color: #000;
+}

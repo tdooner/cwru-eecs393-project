@@ -8,12 +8,14 @@
     =javascript_include_tag "application"
     =csrf_meta_tags
   %body
-    %header.top-bar
+    %header.jumbotron.top-bar
       .container
         .row
+          .span12
+            %h1 Case Humans vs. Zombies
+        .row
           .span6
-            %h1
-              =link_to 'Case Humans vs. Zombies', '/'
+            %h3 Zombie Game Engine
           .span6
             %ul.nav.nav-pills
               %li= link_to 'Home', root_url

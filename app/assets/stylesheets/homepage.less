@@ -1,12 +1,32 @@
 @import "shared/fonts";
+@import "shared/variables";
+@import "twitter/bootstrap/mixins";
 
 .jumbotron {
-  padding-top: 30px;
-  padding-bottom: 40px;
+  padding: 40px 0;
   position: relative;
-  background-color: #58FF3A;
 }
 .jumbotron h1 {
-  font-family: @aLoveOfThunder;
-  font-size: 72px;
+  font-size: 64px;
+  letter-spacing: 2px;
+}
+
+/* Big Screens */
+@media (min-width: 1200px) {
+  .jumbotron h1 {
+    font-size: 72px;
+  }
+}
+/* Tablets */
+@media (min-width: 768px) and (max-width: 979px) {
+  .jumbotron h1 {
+    font-size: 48px;
+  }
+}
+/* Phones */
+@media (max-width: 767px) {
+  .jumbotron h1 {
+    font-size: 36px;
+    text-align: center;
+  }
 }

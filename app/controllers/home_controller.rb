@@ -1,5 +1,5 @@
 class HomeController < ActionController::Base
-  layout 'application'
+  layout 'homepage'
 
   def index
     # An example call to the engine
