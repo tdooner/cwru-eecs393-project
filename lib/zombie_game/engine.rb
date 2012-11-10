@@ -1,6 +1,3 @@
-# TODO: This is generally frowned upon:
-$LOAD_PATH << './lib/engine/'
-
 require 'filtered_model'
 require 'plugin'
 
@@ -11,7 +8,7 @@ module ZombieGame
       #
       # So, "plugins/donut_plugin.rb" should provide a class DonutPlugin
       #              \__________/
-      Dir["./lib/engine/plugins/*.rb"].map do |file|
+      Dir["./lib/zombie_game/plugins/*.rb"].map do |file|
         require file
 
         File.basename(file, '.rb').camelize
