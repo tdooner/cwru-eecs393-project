@@ -31,6 +31,10 @@
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: @keepCalm;
+}
+
 // Headers
 .top-bar {
   background-color: @hvzColor;
@@ -41,11 +45,13 @@
 }
 .top-bar .nav {
   margin-bottom: 0;
+  font-family: @keepCalm;
 }
 .top-bar .nav > li > a {
   line-height: 40px;
-  font-size: 20px;
+  font-size: 24px;
   .border-radius(0);
+  color: @headingsColor;
 
   &:hover {
     background-color: lighten(@hvzColor, 10%);

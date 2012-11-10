@@ -6,7 +6,12 @@
     =stylesheet_link_tag    "application", :media => "all"
     =yield :stylesheets
     =javascript_include_tag "application"
+    =javascript_include_tag "jquery.fittext"
     =csrf_meta_tags
+    :javascript
+      $(function() {
+        $(".jumbotron h1").fitText(1.5);
+      });
   %body
     %header.jumbotron.top-bar
       .container
@@ -14,9 +19,9 @@
           .span12
             %h1 Case Humans vs. Zombies
         .row
-          .span6
+          .span5
             %h3 Zombie Game Engine
-          .span6
+          .span7
             %ul.nav.nav-pills
               %li= link_to 'Home', root_url
               %li= link_to 'Scoreboard', '#'
