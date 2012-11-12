@@ -14,9 +14,13 @@ class GamesController < ActionController::Base
     if @player
       flash[:notice] = 'You are already registered!'
     else
-      Player.create(:game_id => @game.id, :user_id => @user.id)
+      @user.register_for_game(@game)
       flash[:notice] = 'You have been registered!'
     end
     redirect_to game_url(@game)
+  end
+
+  def unregister
+
   end
 end

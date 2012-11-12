@@ -3,6 +3,9 @@
 =@game.players.inspect
 %h3 Registration
 -if user_signed_in?
-  =link_to 'Register for game', register_game_url(@game)
+  -if user.registered?(@game)
+    =link_to 'Unregister', unregister_game_url(@game)
+  -else
+    =link_to 'Register for game', register_game_url(@game)
 -else
   Please Log In to register

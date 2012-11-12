@@ -9,6 +9,7 @@ ZombieGameEngine::Application.routes.draw do
   resources :games do
     member do
       get :register
+      get :unregister
     end
   end
 
