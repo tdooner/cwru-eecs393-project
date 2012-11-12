@@ -32,7 +32,11 @@ end
 
 group :development do
   gem 'debugger'
-  gem 'rspec'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl'
 end
 
 gem 'jquery-rails'
