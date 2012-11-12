@@ -37,6 +37,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'factory_girl'
+  gem 'simplecov'
 end
 
 gem 'jquery-rails'
