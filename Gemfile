@@ -32,6 +32,7 @@ end
 
 group :development do
   gem 'debugger'
+  gem 'rspec'
 end
 
 gem 'jquery-rails'
