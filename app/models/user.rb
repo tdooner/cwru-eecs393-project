@@ -16,6 +16,10 @@ class User
     Player.create(:game_id => game.id, :user_id => self.id)
   end
 
+  def unregister_for_game(game)
+    Player.where(:game_id => game.id, :user_id => self.id).destroy_all
+  end
+
   class << self
     def find_by_facebook(auth_blob, current_user = nil)
       user = User.where(:auth_provider => :facebook, :auth_uid => auth_blob.uid).first

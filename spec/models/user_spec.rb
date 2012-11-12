@@ -52,7 +52,16 @@ describe User, '#register_for_game' do
   let!(:game) { FactoryGirl.create(:game) }
   let!(:user) { FactoryGirl.create(:user) }
 
-  it "doesn't register you again for the same game"
-  it 'creates a Player model appropriately'
+  it "doesn't create multiple Player models" do
+    user.register_for_game(game)
+
+    expect { user.register_for_game(game) }.
+      to_not change { Player.count }
+  end
+
+  it 'creates a Player model appropriately' do
+    expect { user.register_for_game(game) }.
+      to change { Player.count }.by 1
+  end
 
 end

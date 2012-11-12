@@ -3,7 +3,7 @@
 =@game.players.inspect
 %h3 Registration
 -if user_signed_in?
-  -if user.registered?(@game)
+  -if current_user.registered?(@game)
     =link_to 'Unregister', unregister_game_url(@game)
   -else
     =link_to 'Register for game', register_game_url(@game)

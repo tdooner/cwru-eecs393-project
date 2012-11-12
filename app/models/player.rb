@@ -5,6 +5,8 @@ class Player
   include MongoMapper::Document
   include ZombieGame::FilteredModel
 
-  key :name, String
-  key :caseid, String
+  key :game_id
+  key :user_id
+
+  ensure_index [[:game_id, 1], [:user_id, 1]], :unique => true
 end

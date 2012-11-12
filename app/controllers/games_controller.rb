@@ -9,9 +9,7 @@ class GamesController < ActionController::Base
     @game = Game.find(params[:id])
     @user = current_user
 
-    # TODO: Make this logic not here:
-    @player = Player.where(:game_id => @game.id, :user_id => @user.id).first
-    if @player
+    if @user.registered?(@game)
       flash[:notice] = 'You are already registered!'
     else
       @user.register_for_game(@game)
