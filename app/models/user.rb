@@ -17,7 +17,7 @@ class User
   end
 
   def unregister_for_game(game)
-    Player.where(:game_id => game.id, :user_id => self.id).destroy_all
+    Player.where(:game_id => game.id, :user_id => self.id).remove
   end
 
   class << self
