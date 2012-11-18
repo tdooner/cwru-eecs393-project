@@ -1,13 +1,13 @@
 %h2 Player List
 %table
   %thead
-    %th Case ID
     %th Name
+    %th Email
   %tbody
     -@players.each do |p|
       %tr
-        %td= p.caseid
-        %td= p.name
+        %td= p.user.name
+        %td= p.user.email
 %h2 Game List
 %ul
 -@games.each do |g|
