@@ -24,6 +24,7 @@ class GamesController < ActionController::Base
       break if s == @step
 
       if !completed?(s)
+        flash[:error] = 'You cannot complete that step of registration yet!'
         return redirect_to register_game_url(@game, s)
       end
     end

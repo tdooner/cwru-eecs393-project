@@ -60,3 +60,18 @@ h1, h2, h3, h4, h5, h6 {
 .top-bar a {
   color: #000;
 }
+.error-bar {
+  margin: -20px 0 20px;
+  font-family: 'KeepCalm';
+  line-height: 3em;
+  font-size: 18px;
+}
+.notice {
+  background-color: lighten(@hvzColor, 20%);
+}
+.alert {
+  background-color: hsl(55, saturation(@hvzColor), lightness(@hvzColor));
+}
+.error {
+  background-color: hsl(0, saturation(@hvzColor), lightness(@hvzColor));
+}
