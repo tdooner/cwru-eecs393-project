@@ -1,13 +1,51 @@
-%ul
-  - @step_titles.each_with_index do |s, i|
-    %li
-      -if (@step == @steps[i])
-        %b= s
-      -else
-        =s
-Here is the thing
-=render "games/register/step_#{@step}"
+:css
+  #reg_nav {
+    list-style-type: none;
+    overflow: hidden;
+    margin-left: 0;
+  }
+  #reg_nav li a {
+    float: left;
+    padding: 0;
+    width: 16%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    background-color: #C0FFB5;
+    font-family: 'KeepCalm';
+    color: #000;
 
-%p
-  Next step here:
-  =link_to "Step #{@next_step}", register_game_url(@game, @next_step)
+    /* For the arrowy stuff: */
+    /*border-bottom: 1px solid #000;
+    border-top: 1px solid #000;*/
+    line-height: 3em;
+  }
+
+  #reg_nav li.selected a {
+    background-color: #52ED37;
+  }
+
+  /* For the arrowy stuff: */
+  #reg_nav li a:before {
+    display: block;
+    width: 0;
+    content: " ";
+    border: solid transparent;
+    border-width: 1.5em;
+    margin-right: -1.5em;
+    border-left-color: #C0FFB5;
+    float: left;
+  }
+  #reg_nav li:first-child a:before {
+    border-left-color: #fff;
+  }
+  #reg_nav li.next_step a:before {
+    border-left-color: #52ED37;
+  }
+%ul#reg_nav
+  -@step_titles.each_with_index do |s, i|
+    %li{ :class => (@step == @steps[i]) ? 'selected' : (@next_step == @steps[i]) ? 'next_step' : '' }
+      =link_to s, register_game_url(@game, @steps[i])
+.clearfix
+  =render "games/register/step_#{@step}"

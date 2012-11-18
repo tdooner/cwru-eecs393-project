@@ -1,6 +1,18 @@
-=form_for(Waiver.new, :url => register_game_url(@game, @next_step)) do |f|
-  =f.date_select :date_signed
-  =f.date_select :date_of_birth
-  =f.text_field :emergency_name
-  =f.text_field :emergency_phone
+=form_for(Waiver.new, :url => register_game_url(@game, @next_step), :html => { :class => 'form-horizontal' }) do |f|
+  .control-group
+    =label_tag :waiver_date_signed, 'Today Date:', :class => 'control-label'
+    .controls
+      =f.date_select :date_signed
+  .control-group
+    =label_tag :waiver_date_of_birth, 'Date of Birth:', :class => 'control-label'
+    .controls
+      =f.date_select :date_of_birth
+  .control-group
+    =label_tag :waiver_emergency_name, 'Emergency Contact Name:', :class => 'control-label'
+    .controls
+      =f.text_field :emergency_name
+  .control-group
+    =label_tag :waiver_emergency_phone, 'Emergency Phone:', :class => 'control-label'
+    .controls
+      =f.text_field :emergency_phone
   =f.submit 'Sign Waiver!'

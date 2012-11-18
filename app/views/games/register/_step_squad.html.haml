@@ -1,10 +1,9 @@
 %p
   Select a squad:
-  =form_for(Squad.new, :url => register_game_url(@game, @next_step)) do |f|
-    %ul
+  =form_for(Squad.new, :url => register_game_url(@game, @next_step), :html => { :class => 'form-horizontal' }) do |f|
     -@game.squads.each do |s|
-      %li
-        =label_tag "squad_#{s.name}", s.name
+      =label_tag "squad_#{s.name}", :class => 'radio' do
+        =s.name
         =radio_button_tag :squad, s.name 
     =f.submit 'Join Squad'
 %p

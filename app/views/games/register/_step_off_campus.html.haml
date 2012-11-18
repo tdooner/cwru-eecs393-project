@@ -1,8 +1,10 @@
-Are you off campus?
+Do you live off-campus?
 =form_for(:off_campus, :url => register_game_url(@game, @next_step)) do |f|
-  =label_tag :off_campus_true, 'Yes'
-  =radio_button_tag :off_campus, :true, true
-  =label_tag :off_campus_false, 'No'
-  =radio_button_tag :off_campus, :false, false
+  =label_tag :off_campus_true, :class => 'radio' do
+    =radio_button_tag :off_campus, :true, true
+    Yes
+  =label_tag :off_campus_false, :class => 'radio' do
+    =radio_button_tag :off_campus, :false, false
+    No
   %p
     =f.submit 'Go on...'
