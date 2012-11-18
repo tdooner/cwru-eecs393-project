@@ -1,0 +1,5 @@
+Looks like you're done!
+=@player.inspect
+=form_for(:confirm, :url => register_game_url(@game, @next_step)) do |f|
+  =hidden_field_tag :confirmed, true
+  =f.submit 'Click here to complete registration!'

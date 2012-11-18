@@ -1,0 +1,6 @@
+=form_for(Waiver.new, :url => register_game_url(@game, @next_step)) do |f|
+  =f.date_select :date_signed
+  =f.date_select :date_of_birth
+  =f.text_field :emergency_name
+  =f.text_field :emergency_phone
+  =f.submit 'Sign Waiver!'

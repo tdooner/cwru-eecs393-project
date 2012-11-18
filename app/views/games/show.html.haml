@@ -1,6 +1,6 @@
 %h2= @game.name
 %h3 Players
-=@game.players.inspect
+=@game.players.all.inspect
 %h3 Registration
 -if user_signed_in?
   -if current_user.registered?(@game)

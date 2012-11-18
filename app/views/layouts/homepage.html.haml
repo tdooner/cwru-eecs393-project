@@ -1,0 +1,58 @@
+!!!
+%html
+  %head
+    %title ZombieGameEngine
+    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0' }
+    =stylesheet_link_tag    "application", :media => "all"
+    =yield :stylesheets
+    =javascript_include_tag "application"
+    =javascript_include_tag "jquery.fittext"
+    =csrf_meta_tags
+    :javascript
+      $(function() {
+        $(".jumbotron h1").fitText(1.5);
+      });
+  %body
+    %header.jumbotron.top-bar
+      .container
+        .row
+          .span12
+            %h1 Case Humans vs. Zombies
+        .row
+          .span5
+            %h3 Zombie Game Engine
+          .span7
+            %ul.nav.nav-pills
+              %li= link_to 'Home', root_url
+              %li= link_to 'Scoreboard', '#'
+              - if user_signed_in?
+                %li= link_to 'Log Out', destroy_user_session_path
+              - else
+                %li= link_to 'Log in with Facebook', user_omniauth_authorize_path(:facebook)
+    .container
+      - if flash[:error] || flash[:alert] || flash[:notice]
+        .row
+          .span12
+            .alert
+              =flash[:error]
+              =flash[:alert]
+              =flash[:notice]
+      - if user_signed_in?
+        .row.visible-phone
+          .span12
+            .well
+              =image_tag current_user.image_url, :style => "float:left; margin-right: 20px;"
+              %h2= current_user.name
+      .row
+        .span4.hidden-phone
+          - if user_signed_in?
+            .well
+              =image_tag current_user.image_url, :style => "float:left; margin-right: 20px;"
+              %h2= current_user.name
+              %ul
+                %li View Player Profile
+                %li Submit a Tag
+                %li Check In
+                %li ...
+        .span8
+          =yield

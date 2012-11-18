@@ -7,5 +7,10 @@ class Game
   key :game_begins, Time
   key :game_ends, Time
 
-  many :players
+  many :all_player_objects, :class_name => 'Player'
+  many :squads
+
+  def players
+    all_player_objects.where(registered: true)
+  end
 end

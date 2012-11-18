@@ -89,6 +89,9 @@ GEM
     mm-devise (2.0)
       devise (>= 1.2)
       mongo_mapper (>= 0.9.0)
+    mm-multi-parameter-attributes (0.2.2)
+      mongo_mapper (>= 0.9.0)
+      tzinfo
     mongo (1.6.4)
       bson (~> 1.6.4)
     mongo_mapper (0.12.0)
@@ -194,6 +197,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   mm-devise
+  mm-multi-parameter-attributes
   mongo_mapper (= 0.12.0)
   oauth2
   omniauth

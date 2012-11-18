@@ -8,7 +8,7 @@ ZombieGameEngine::Application.routes.draw do
 
   resources :games do
     member do
-      get :register
+      match 'register/(:step)' => 'games#register', :as => 'register'
       get :unregister
     end
   end

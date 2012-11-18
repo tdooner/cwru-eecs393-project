@@ -1,0 +1,13 @@
+%ul
+  - @step_titles.each_with_index do |s, i|
+    %li
+      -if (@step == @steps[i])
+        %b= s
+      -else
+        =s
+Here is the thing
+=render "games/register/step_#{@step}"
+
+%p
+  Next step here:
+  =link_to "Step #{@next_step}", register_game_url(@game, @next_step)

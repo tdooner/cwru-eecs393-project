@@ -12,6 +12,7 @@ gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook'
 gem 'mm-devise'
+gem 'mm-multi-parameter-attributes'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

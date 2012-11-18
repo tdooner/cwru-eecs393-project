@@ -11,15 +11,15 @@ class User
   many :players
 
   def registered?(game)
-    Player.where(:game_id => game.id, :user_id => self.id).count > 0
+    game.players.where(:user_id => self.id).count > 0
   end
 
   def register_for_game(game)
-    Player.create(:game_id => game.id, :user_id => self.id)
+    Player.create(:user_id => self.id, :registered => true, :game_id => game.id)
   end
 
   def unregister_for_game(game)
-    Player.where(:game_id => game.id, :user_id => self.id).remove
+    game.players.where(:user_id => self.id).remove
   end
 
   class << self
