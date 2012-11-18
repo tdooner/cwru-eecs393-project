@@ -8,6 +8,8 @@ class User
   key :auth_provider, String     # OmniAuth provider (:facebook, :cas, etc.)
   key :auth_uid, String          # OmniAuth access key
 
+  many :players
+
   def registered?(game)
     Player.where(:game_id => game.id, :user_id => self.id).count > 0
   end

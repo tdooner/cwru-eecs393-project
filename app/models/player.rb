@@ -8,5 +8,8 @@ class Player
   key :game_id
   key :user_id
 
+  belongs_to :game
+  belongs_to :user
+
   ensure_index [[:game_id, 1], [:user_id, 1]], :unique => true
 end
