@@ -1,0 +1,62 @@
+/*
+ * This is the global stylesheet file! Add custom styles for individual
+ * pages in files for that page. e.g. if you want custom styles for the
+ * scoreboard (`games` controller, `show` action), create
+ * app/assets/stylesheets/games/show.less and then in
+ * app/views/games/show.html.haml put
+ *  - content_for :stylesheets do
+ *    =stylesheet_link_tag 'games/show'
+ *
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/responsive";
+
+@import "shared/fonts";
+@import "shared/variables";
+
+// Override that one silly padding thing:
+@media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @keepCalm;
+}
+
+// Headers
+.top-bar {
+  background-color: @hvzColor;
+  margin-bottom: 20px;
+}
+.top-bar h1 {
+  font-family: @aLoveOfThunder;
+}
+.top-bar .nav {
+  margin-bottom: 0;
+  font-family: @keepCalm;
+}
+.top-bar .nav > li > a {
+  line-height: 40px;
+  font-size: 24px;
+  .border-radius(0);
+  color: @headingsColor;
+
+  &:hover {
+    background-color: lighten(@hvzColor, 10%);
+  }
+}
+.top-bar a {
+  color: #000;
+}

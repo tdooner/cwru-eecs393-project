@@ -4,42 +4,20 @@
     %title ZombieGameEngine
     %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0' }
     =stylesheet_link_tag    "application", :media => "all"
+    =yield :stylesheets
     =javascript_include_tag "application"
     =csrf_meta_tags
-    :css
-      body, html {
-      }
-      .jumbotron {
-        padding-top: 20px;
-        padding-bottom: 40px;
-        position: relative;
-        background-color: #58FF3A;
-      }
-      .top-navigation {
-        list-style-type: none;
-      }
-      .top-navigation li {
-        float: left;
-      }
-      .top-navigation li:before {
-        content: "|";
-        padding: 0 10px;
-      }
-      .top-navigation li:first-child:before {
-        content: "";
-      }
   %body
-    %header.jumbotron
+    %header.top-bar
       .container
         .row
           .span6
-            %h1 Case HvZ
-            %h3 Zombie Game Engine
-        .row
-          .span6.offset6
-            %ul.top-navigation
+            %h1
+              =link_to 'Case Humans vs. Zombies', '/'
+          .span6
+            %ul.nav.nav-pills
               %li= link_to 'Home', root_url
-              %li Scoreboard
+              %li= link_to 'Scoreboard', '#'
               - if user_signed_in?
                 %li= link_to 'Log Out', destroy_user_session_path
               - else
