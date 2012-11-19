@@ -7,6 +7,7 @@ class User
   key :image_url, String
   key :auth_provider, String     # OmniAuth provider (:facebook, :cas, etc.)
   key :auth_uid, String          # OmniAuth access key
+  key :site_admin, Boolean
 
   many :players
 

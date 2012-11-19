@@ -9,6 +9,7 @@ class Player
   key :user_id, ObjectId
   key :registered, Boolean
   key :off_campus, Boolean # via Engine plugin
+  key :game_admin, Boolean
 
   belongs_to :game
   belongs_to :user
