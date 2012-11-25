@@ -47,5 +47,6 @@
   -@step_titles.each_with_index do |s, i|
     %li{ :class => (@step == @steps[i]) ? 'selected' : (@next_step == @steps[i]) ? 'next_step' : '' }
       =link_to s, register_game_url(@game, @steps[i])
-.clearfix
-  =render "games/register/step_#{@step}"
+.row
+  .span11
+    =render "games/register/step_#{@step}"
