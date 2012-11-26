@@ -11,12 +11,12 @@ class Ability
 
     # Game admins can manage players of the game they administer
     can :manage, Player do |player|
-      user.players.find(:game_id => player.game_id, :game_admin => true).any?
+      user.players.where(:game_id => player.game_id, :game_admin => true).exists?
     end
 
     # Game admins can manage games they administer
     can :manage, Game do |game|
-      user.players.find(:game_id => game.id, :game_admin => true).any?
+      user.players.where(:game_id => game.id, :game_admin => true).exists?
     end
 
     # Only site admins can adminify people
