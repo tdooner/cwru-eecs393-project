@@ -7,7 +7,7 @@
   .control-group
     =label_tag :waiver_date_of_birth, 'Date of Birth:', :class => 'control-label'
     .controls
-      =f.date_select :date_of_birth, {}, :class => 'span1'
+      =f.date_select :date_of_birth, { :start_year => 80.years.ago.year }, :class => 'span1'
   .control-group
     =label_tag :waiver_emergency_name, 'Emergency Contact Name:', :class => 'control-label'
     .controls
@@ -21,7 +21,7 @@
     %p
       I,
       %b= current_user.name
-      have asked to participate in the Big Games Club’s Humans vs.  Zombies game,
+      have asked to participate in the Big Games Club's Humans vs. Zombies game,
       scheduled to take place between #{@game.game_begins}-#{@game.game_ends}. My
       participation will include some physical risks and I am aware of hazards that
       may be encountered during this program and I understand that there is a risk

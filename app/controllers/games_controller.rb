@@ -1,4 +1,4 @@
-class GamesController < ActionController::Base
+class GamesController < ApplicationController
   layout 'application'
   before_filter :set_game
   before_filter :set_player
