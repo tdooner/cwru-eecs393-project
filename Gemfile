@@ -14,6 +14,9 @@ gem 'omniauth-facebook'
 gem 'mm-devise'
 gem 'mm-multi-parameter-attributes'
 
+# User permissions
+gem 'cancan'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
