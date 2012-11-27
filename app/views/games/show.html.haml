@@ -1,6 +1,63 @@
 %h2= @game.name
-%h3 Players
-=@game.players.all.inspect
+:css
+  .scoreboard_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .scoreboard_list li {
+    margin: 20px 0;
+    padding: 0;
+    display: block;
+    clear: both;
+    overflow: auto;
+  }
+  .scoreboard_list .rank {
+    float: left;
+    font-size: 34px;
+    line-height: 2em;
+    font-family: 'KeepCalm', sans-serif;
+    width: 50px;
+  }
+  .scoreboard_list .rank.small {
+    font-size: 25px;
+    line-height: 2.72em
+  }
+  .scoreboard_list .rank.tiny {
+    width: 75px;
+  }
+  .scoreboard_list .player img {
+    float: left;
+    margin: 0 15px;
+  }
+  .scoreboard_list .player h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.5em;
+    padding: 0; margin: 0;
+  }
+.row
+  .span12
+    %h3 Players
+    %ul.scoreboard_list
+      -# TODO: Cut this out into a helper.
+      - at_rank = 0
+      - points_at_rank = -1
+      - num_at_rank = 1
+      - @players.each do |p|
+        - if p.points != points_at_rank
+          - rank = (at_rank += num_at_rank)
+          - points_at_rank = p.points
+          - num_at_rank = 1
+        - else
+          - rank = at_rank
+          - num_at_rank += 1
+        %li.player
+          .rank{ :class => (rank >= 100) ? ((rank >= 1000) ? 'tiny' : 'small') : '' } #{rank}.
+          =image_tag p.user.image_url
+          %h4= p.user.name
+          17 tags, #{p.points} points
 %h3 Registration
 -if user_signed_in?
   -if current_user.registered?(@game)

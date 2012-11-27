@@ -5,6 +5,7 @@
   %thead
     %th Name
     %th Email
+    %th Points
     %th Admin
     %th Editable
   %tbody
@@ -12,6 +13,7 @@
       %tr
         %td= p.user.name
         %td= p.user.email
+        %td= p.points
         %td= p.game_admin? or p.user.site_admin?
         %td= can? :edit, p
 %h2 Game List

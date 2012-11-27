@@ -2,6 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user ||= User.new
 
     # Users can manage themselves but no one else
     cannot :manage, User
