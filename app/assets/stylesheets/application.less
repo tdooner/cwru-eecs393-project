@@ -76,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.error-bar {
+.below-header-bar {
   margin: -20px 0 20px;
   font-family: 'KeepCalm';
   line-height: 3em;
@@ -87,7 +87,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 .alert {
   background-color: hsl(55, saturation(@hvzColor), lightness(@hvzColor));
+  padding: 0;
+  color: #000;
+  .border-radius(0px);
+  text-shadow: 0px;
+  border: 0;
 }
 .error {
   background-color: hsl(0, saturation(@hvzColor), lightness(@hvzColor));
+}
+.site-admin {
+  //background-color: hsl(186, saturation(@hvzColor), lightness(@hvzColor));
+  background-color: #ffdcdc;
 }

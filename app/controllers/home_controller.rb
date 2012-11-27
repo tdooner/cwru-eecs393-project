@@ -1,4 +1,4 @@
-class HomeController < ActionController::Base
+class HomeController < ApplicationController
   layout 'homepage'
 
   def index
