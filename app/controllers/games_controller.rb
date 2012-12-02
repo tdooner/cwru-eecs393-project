@@ -52,6 +52,11 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.find(params[:id])
+
+    if !@game.present?
+      flash[:error] = 'Game not found!'
+      return redirect_to(root_url)
+    end
   end
 
   def set_player
