@@ -18,6 +18,8 @@ class Player
 
   one :waiver # via Engine plugin
 
+  many :tags, :foreign_key => 'tagger_id', :class_name => 'Tag'
+
   ensure_index [[:game_id, 1], [:user_id, 1]], :unique => true
   ensure_index [[:registered, 1]]
   ensure_index [[:points, -1]]
