@@ -1,0 +1,18 @@
+=form_for(@game, :url => admin_game_url(@game)) do |f|
+  =@game.inspect()
+  =label_tag 'Name: '
+  =text_field_tag 'game[name]', @game.name
+  =label_tag 'Registration Begins: '
+  =f.datetime_select :registration_begins, { :order => [:month, :day, :year,
+    :hour, :minute] }
+  =label_tag 'Registration Ends: '
+  =f.datetime_select :registration_ends, { :order => [:month, :day, :year,
+    :hour, :minute] }
+  =label_tag 'Game Begins: '
+  =f.datetime_select :game_begins, { :order => [:month, :day, :year,
+    :hour, :minute] }
+  =label_tag 'Game Ends: '
+  =f.datetime_select :game_ends, { :order => [:month, :day, :year,
+    :hour, :minute] }
+
+  =f.submit 'Save'

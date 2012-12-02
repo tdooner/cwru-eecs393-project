@@ -1,5 +1,6 @@
 class Game
   include MongoMapper::Document
+  plugin MongoMapper::Plugins::MultiParameterAttributes
 
   key :name, String
   key :registration_begins, Time
