@@ -14,10 +14,10 @@
     - @games.each do |g|
       %tr
         %td= g.name
-        %td= g.registration_begins.strftime("%b %d %y @ %I:%M %p")
-        %td= g.registration_ends.strftime("%b %d %y @ %I:%M %p")
-        %td= g.game_begins.strftime("%b %d %y @ %I:%M %p")
-        %td= g.game_ends.strftime("%b %d %y @ %I:%M %p")
+        %td= g.friendly_dates[:registration_begins]
+        %td= g.friendly_dates[:registration_ends]
+        %td= g.friendly_dates[:game_begins]
+        %td= g.friendly_dates[:game_ends]
         - if can?(:manage, g)
           %td
             %a.btn.btn-primary{:href => admin_game_url(g)} Edit

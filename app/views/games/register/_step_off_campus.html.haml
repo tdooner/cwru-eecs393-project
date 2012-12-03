@@ -1,10 +1,11 @@
-Do you live off-campus?
-=form_for(:off_campus, :url => register_game_url(@game, @next_step)) do |f|
-  =label_tag :off_campus_true, :class => 'radio' do
-    =radio_button_tag :off_campus, :true, true
-    Yes
-  =label_tag :off_campus_false, :class => 'radio' do
-    =radio_button_tag :off_campus, :false, false
-    No
-  %p
-    =f.submit 'Go on...'
+%h3 Do you live off-campus?
+=form_for(:off_campus, :url => register_game_url(@game, @next_step), :html => { :class => 'form-horizontal' }) do |f|
+  %fieldset
+    =label_tag :off_campus_true, :class => 'checkbox' do
+      =radio_button_tag :off_campus, :true, true
+      Yes
+    =label_tag :off_campus_false, :class => 'checkbox' do
+      =radio_button_tag :off_campus, :false, false
+      No
+    .form-actions
+      =f.submit 'Go on...', :class => 'btn btn-primary btn-large'

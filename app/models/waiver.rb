@@ -7,5 +7,8 @@ class Waiver
   key :emergency_name, String
   key :emergency_phone, String
 
+  validates_presence_of :date_signed, :date_of_birth, :emergency_name,
+    :emergency_phone
+
   embedded_in :player
 end

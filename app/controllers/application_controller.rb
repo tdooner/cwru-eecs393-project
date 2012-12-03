@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def set_default_game
     # TODO: Use the subdomain to determine the current game.
-    @default_game = Game.last || Game.new
+    @default_game = Game.sort(:game_begins.desc).first || Game.new
   end
 
   def set_time_zone

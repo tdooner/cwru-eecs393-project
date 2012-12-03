@@ -1,3 +1,4 @@
 %h3 You are about to register for Humans vs Zombies!
 =form_for(:register, :url => register_game_url(@game, @next_step)) do |f|
-  =f.submit 'Begin registration process!'
+  .form-actions
+    =f.submit 'Begin registration process!', :class => 'btn btn-primary btn-large'

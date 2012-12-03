@@ -12,6 +12,7 @@ class Player
   key :oz, Boolean
   key :game_admin, Boolean
   key :points, Integer
+  key :card_code, String
 
   belongs_to :game
   belongs_to :user
@@ -28,7 +29,7 @@ class Player
   ensure_index [[:points, -1]]
 
   def signed_waiver?
-    waiver.present?
+    waiver.present? && waiver.valid?
   end
 
   def joined_squad?
@@ -69,6 +70,10 @@ class Player
     start_state = :human
 
     @state ||= steps.inject(start_state) { |state,i| self.send(i, self, state, game_time) }
+  end
+
+  def self.generate_card_code
+    %W{A C D E F G H K L M P Q R T W X Y Z 2 3 4 5 6 7 8 9}.sample(5).join
   end
 
   private

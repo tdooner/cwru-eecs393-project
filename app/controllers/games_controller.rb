@@ -9,8 +9,6 @@ class GamesController < ApplicationController
   end
 
   def register
-    process_steps
-
     # Assume these two variables are retrieved with an engine call...
     # ... or better yet the engine returns a list of objects
     @steps = [:begin, :waiver, :squad, :off_campus, :confirm, :done]
@@ -21,18 +19,27 @@ class GamesController < ApplicationController
     @step ||= :begin
 
     @next_step = @steps[@steps.find_index { |i| i == @step } + 1]
+    @prior_step = @steps[@steps.find_index { |i| i == @step } - 1]
+
+    if !process_steps
+      flash.keep
+      return redirect_to register_game_url(@game, @prior_step)
+    end
 
     @steps.each do |s|
       break if s == @step
 
       if !completed?(s)
-        flash[:error] = 'You cannot complete that step of registration yet!'
+        flash[:alert] = 'You cannot complete that step of registration yet!'
         return redirect_to register_game_url(@game, s)
       end
     end
 
+    load_step(@step)
+
     if (@step == :done && params[:confirmed] == 'true')
       @player.registered = true
+      @player.card_code ||= Player.generate_card_code
       @player.save(safe: true)
     end
   end
@@ -89,16 +96,42 @@ class GamesController < ApplicationController
   def process_steps
     if params[:waiver]
       @player.waiver = Waiver.new(params[:waiver])
-      @player.save(safe: true)
+
+      if @player.waiver.valid? &&
+        @player.save(safe: true)
+      else
+        flash[:alert] = 'Error: ' + @player.waiver.errors.full_messages.first
+        return false
+      end
     end
+
     if params[:squad]
-      @player.squad = Squad.find_or_initialize_by_name_and_game_id(params[:squad], @game.id)
-      @player.squad.game = @game
+      if params[:squad][:name]
+        @player.squad = Squad.find_by_name_and_game_id(params[:squad][:name], @game.id)
+      else
+        if params[:squad][:new_name]
+          @player.squad = Squad.find_or_create_by_name_and_game_id(params[:squad][:new_name], @game.id)
+          @player.squad.game = @game
+        end
+      end
+
       @player.save(safe: true)
     end
+
     if params[:off_campus]
       @player.off_campus = (params[:off_campus] == 'true') ? true : false
       @player.save(safe: true)
+    end
+
+    true
+  end
+
+  def load_step(step)
+    case step
+    when :waiver
+      @waiver = @player.waiver || Waiver.new
+    when :squad
+      @squad = @player.squad || Squad.new
     end
   end
 end

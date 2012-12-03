@@ -26,4 +26,15 @@ class Game
   def time
     [self.game_begins, [self.game_ends, Time.now].min].max
   end
+
+  def friendly_dates
+    format = '%b %d %y @ %I:%M %p'
+
+    @friendly_dates ||= [
+      :game_begins,
+      :game_ends,
+      :registration_begins,
+      :registration_ends,
+    ].inject({}) { |h,i| h.merge(i => self.send(i).strftime(format)) }
+  end
 end

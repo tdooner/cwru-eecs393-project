@@ -1,5 +1,17 @@
-Looks like you're done!
-=@player.inspect
-=form_for(:confirm, :url => register_game_url(@game, @next_step)) do |f|
+%h3 Almost Done...
+You're about to register for HvZ #{@game.name}. Please verify the following details are correct:
+=form_for(:confirm, :url => register_game_url(@game, @next_step), :html => { :class => 'form-horizontal' }) do |f|
+  %table.table.span4
+    %thead
+      %th Property
+      %th Value
+    %tbody
+      %tr
+        %td Off Campus?
+        %td= @player.off_campus
+      %tr
+        %td Squad
+        %td= @player.squad.name
   =hidden_field_tag :confirmed, true
-  =f.submit 'Click here to complete registration!'
+  .form-actions{ :style => 'clear: both;' }
+    =f.submit 'Click here to complete registration!', :class => 'btn btn-primary btn-large'

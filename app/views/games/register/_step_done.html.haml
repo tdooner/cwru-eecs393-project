@@ -1,5 +1,7 @@
-Done!
-=@player.inspect
+%h3 You're Registered!
 
-%p
-  =link_to 'View Game', game_url(@game)
+Your card code is:
+%h2= @player.card_code
+
+Carry this with you always during the game of Humans vs. Zombies! Surrender it
+if you are tagged by a zombie, and then go tag humans yourself! Have fun!

@@ -1,13 +1,9 @@
-=form_for(Waiver.new, :url => register_game_url(@game, @next_step), :html => { :class => 'form-horizontal' }) do |f|
+=form_for(@waiver, :url => register_game_url(@game, @next_step), :html => { :class => 'form-horizontal' }) do |f|
   %h3 Fill out this information...
-  .control-group
-    =label_tag :waiver_date_signed, 'Today Date:', :class => 'control-label'
-    .controls
-      =f.date_select :date_signed, { :order => [:month, :day, :year] }, :class => 'span2'
   .control-group
     =label_tag :waiver_date_of_birth, 'Date of Birth:', :class => 'control-label'
     .controls
-      =f.date_select :date_of_birth, { :start_year => 80.years.ago.year }, :class => 'span1'
+      =f.date_select :date_of_birth, { :order => [:month, :day, :year], :start_year => 80.years.ago.year }, :class => 'span2'
   .control-group
     =label_tag :waiver_emergency_name, 'Emergency Contact Name:', :class => 'control-label'
     .controls
@@ -22,7 +18,7 @@
       I,
       %b= current_user.name
       have asked to participate in the Big Games Club's Humans vs. Zombies game,
-      scheduled to take place between #{@game.game_begins}-#{@game.game_ends}. My
+      scheduled to take place between #{@game.friendly_dates[:game_begins]}-#{@game.friendly_dates[:game_ends]}. My
       participation will include some physical risks and I am aware of hazards that
       may be encountered during this program and I understand that there is a risk
       of death, personal injury, and damage to property.
@@ -57,4 +53,13 @@
     %p
       I certify that I have fully read this release and that I understand its terms and conditions and agree to be bound by
       them. I certify that I am over the age of eighteen and have executed this agreement of my own free will.
-    =f.submit 'Sign Waiver!'
+    .control-group
+      =label_tag 'waiver[signed_name]', 'Signature:', :class => 'control-label'
+      .controls
+        =text_field_tag 'waiver[signed_name]'
+    .control-group
+      =label_tag :waiver_date_signed, 'Date Signed:', :class => 'control-label'
+      .controls
+        =f.date_select :date_signed, { :order => [:month, :day, :year] }, :class => 'span2'
+    .form-actions
+      =f.submit 'Sign Waiver!', :class => 'btn btn-primary btn-large'
