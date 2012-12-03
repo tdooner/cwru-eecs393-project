@@ -9,7 +9,7 @@
         %li
           %a{:href => admin_players_url()} Manage Players
 -if controller.is_a?(HomeController)
-  -if current_user && !current_user.registered?(@default_game)
+  -if current_user && @default_game.can_register?(current_user)
     .below-header-bar.alert
       .container
         You aren't registered for #{@default_game.name} yet.

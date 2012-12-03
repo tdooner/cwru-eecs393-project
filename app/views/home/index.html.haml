@@ -1,6 +1,4 @@
 -content_for :stylesheets do
   =stylesheet_link_tag 'homepage'
-%h2 Game List
-%ul
--@games.each do |g|
-  %li= link_to g.name, game_url(g)
+%h2= @default_game.name
+= sanitize(textilize(@default_game.announcements))

@@ -1,6 +1,6 @@
 .row
   .span12
-    Current games:
+    %h3 Current games:
 %table.table
   %thead
     %th Name
@@ -31,4 +31,3 @@
 - if can?(:create, Game)
   .form-actions
     %a.btn{ :href => new_admin_game_url } Create New Game
-All times EST

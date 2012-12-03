@@ -44,9 +44,9 @@
               =image_tag current_user.image_url, :style => "float:left; margin-right: 20px;"
               %h2= current_user.name
               %ul
-                %li View Player Profile
-                %li Submit a Tag
-                %li Check In
-                %li ...
+                %li
+                  =link_to 'View Player Profile', user_url(current_user)
+                %li
+                  =link_to 'Log Out', destroy_user_session_url
         .span8
           =yield

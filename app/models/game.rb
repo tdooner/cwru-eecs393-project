@@ -38,4 +38,9 @@ class Game
       :registration_ends,
     ].inject({}) { |h,i| h.merge(i => self.send(i).strftime(format)) }
   end
+
+  def can_register?(user)
+    # TODO: Cancan it
+    !user.registered?(self) && (Time.now >= registration_begins) && (Time.now < registration_ends)
+  end
 end
