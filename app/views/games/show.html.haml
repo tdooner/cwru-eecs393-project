@@ -10,7 +10,8 @@
     padding: 0;
     display: block;
     clear: both;
-    overflow: auto;
+    overflow: hidden;
+    position: relative;
   }
   .scoreboard_list .rank {
     float: left;
@@ -29,6 +30,8 @@
   .scoreboard_list .player img {
     float: left;
     margin: 0 15px;
+    border-right-width: 15px;
+    border-right-style: solid;
   }
   .scoreboard_list .player h4 {
     overflow: hidden;
@@ -37,8 +40,27 @@
     line-height: 1.5em;
     padding: 0; margin: 0;
   }
+  .scoreboard_list .state {
+    background-color: rgba(255, 255, 255, 0.8);
+    bottom: 0px;
+    font-family: 'Keep Calm';
+    left: 64px;
+    letter-spacing: 3px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 1px 1px #fff; -1px -1px 1px #fff;
+    font-variant: small-caps;
+    line-height: 1.4em;
+    width: 81px;
+  }
+  .scoreboard_list .player.human img {
+    border-right-color: #3AC0FE;
+  }
+  .scoreboard_list .player.zombie img {
+    border-right-color: #58FF3A;
+  }
 .row
-  .span9
+  .span6
     %h3 Players
     %ul.scoreboard_list
       -# TODO: Cut this out into a helper.
@@ -53,17 +75,19 @@
         - else
           - rank = at_rank
           - num_at_rank += 1
-        %li.player
+        %li.player{ :class => p.state }
           .rank{ :class => (rank >= 100) ? ((rank >= 1000) ? 'tiny' : 'small') : '' } #{rank}.
-          =image_tag p.user.image_url
-          %h4=link_to p.user.name, user_url(p.user)
-          #{p.state}
-          #{p.tags.length} tags, #{p.points} points
-  .span3
+          .state= p.state
+          .avatar= image_tag p.user.image_url
+          %h4= link_to p.user.name, user_url(p.user)
+          .status #{p.tags.length} tags, #{p.points} points
+  .span4
     %h3 Squads
     %ul.scoreboard_list
       - @game.squads.each do |s|
-        %li.squad= s.name
+        %li.squad
+          %h4= s.name
+          .status #{s.players.length} players
 %h3 Registration
 -if user_signed_in?
   -if current_user.registered?(@game)

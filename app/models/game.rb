@@ -7,6 +7,7 @@ class Game
   key :registration_ends, Time
   key :game_begins, Time
   key :game_ends, Time
+  key :announcements, String
 
   # Time zone is the name of an ActiveSupport::TimeZone instance. For example,
   # the US time zones are returned with ActiveSupport::TimeZone.us_zones, the
