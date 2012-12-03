@@ -85,9 +85,7 @@
     %h3 Squads
     %ul.scoreboard_list
       - @game.squads.each do |s|
-        %li.squad
-          %h4= s.name
-          .status #{s.players.length} players
+        %li.squad= s.name
 %h3 Registration
 -if user_signed_in?
   -if current_user.registered?(@game)
