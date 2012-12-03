@@ -82,6 +82,21 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 3em;
   font-size: 18px;
 }
+.below-header-bar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    float: left;
+    line-height: 3em;
+    margin-left: 20px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
 .notice {
   background-color: lighten(@hvzColor, 20%);
 }

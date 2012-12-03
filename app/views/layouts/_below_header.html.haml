@@ -1,9 +1,13 @@
 -if current_user && current_user.site_admin?
   .below-header-bar.site-admin
     .container
-      Site Admin
-      %a{:href => admin_games_url()} Manage Games
-      %a{:href => admin_players_url()} Manage Players
+      %ul
+        %li
+          Site Admin:
+        %li
+          %a{:href => admin_games_url()} Manage Games
+        %li
+          %a{:href => admin_players_url()} Manage Players
 -if controller.is_a?(HomeController)
   -if current_user && !current_user.registered?(@default_game)
     .below-header-bar.alert
