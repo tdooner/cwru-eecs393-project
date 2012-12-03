@@ -38,7 +38,7 @@
     padding: 0; margin: 0;
   }
 .row
-  .span12
+  .span9
     %h3 Players
     %ul.scoreboard_list
       -# TODO: Cut this out into a helper.
@@ -57,7 +57,13 @@
           .rank{ :class => (rank >= 100) ? ((rank >= 1000) ? 'tiny' : 'small') : '' } #{rank}.
           =image_tag p.user.image_url
           %h4=link_to p.user.name, user_url(p.user)
-          17 tags, #{p.points} points
+          #{p.state}
+          #{p.tags.length} tags, #{p.points} points
+  .span3
+    %h3 Squads
+    %ul.scoreboard_list
+      - @game.squads.each do |s|
+        %li.squad= s.name
 %h3 Registration
 -if user_signed_in?
   -if current_user.registered?(@game)

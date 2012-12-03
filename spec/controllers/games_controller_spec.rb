@@ -80,4 +80,28 @@ describe GamesController do
       end
     end
   end
+
+  describe 'permissions' do
+    context 'for site admins' do
+      before do
+        @user.set(:site_admin => true)
+        sign_in @user
+      end
+
+      it 'allow them to manage games' do
+        controller.can?(:manage, @game).should be_true
+      end
+    end
+
+    context 'non-site admins' do
+      before do
+        @user.set(:site_admin => false)
+        sign_in @user
+      end
+
+      it 'prohibit them from managing games' do
+        controller.can?(:manage, @game).should be_false
+      end
+    end
+  end
 end

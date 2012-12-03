@@ -1,0 +1,16 @@
+%h3= @game.name
+
+%table.table.table-condensed.table-hover
+  %thead
+    %th Name
+    %th Points
+    %th Squad
+    %th Admin
+  %tbody
+    - @players.each do |p|
+      %tr
+        %td
+          %a{:href => admin_player_url(p)}= User.find(p.user_id).name
+        %td= p.points
+        %td= p.squad.try(:name)
+        %td= p.game_admin

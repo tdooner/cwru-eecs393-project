@@ -1,0 +1,26 @@
+%h3 Editing Game: #{@game.name}
+
+=form_for(@game, :url => admin_game_url(@game), :html => { :class => 'form-horizontal' }) do |f|
+  .control-group
+    =label_tag 'game[name]', 'Name:', :class => 'control-label'
+    .controls
+      =text_field_tag 'game[name]', @game.name
+  .control-group
+    =label_tag :registration_begins, 'Registration Begins: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :registration_begins, { :order => [:month, :day, :year, :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :registration_ends, 'Registration Ends: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :registration_ends, { :order => [:month, :day, :year, :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :game_begins, 'Game Begins: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :game_begins, { :order => [:month, :day, :year, :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :game_ends, 'Game Ends: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :game_ends, { :order => [:month, :day, :year, :hour, :minute] }, :class => 'span2'
+  .form-actions
+    =f.submit 'Save', :class => 'btn btn-primary'
+    %a.btn{ :href => admin_games_url } Cancel

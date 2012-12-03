@@ -1,0 +1,34 @@
+.row
+  .span12
+    Current games:
+%table.table
+  %thead
+    %th Name
+    %th Registration Starts
+    %th Registration Ends
+    %th Game Starts
+    %th Game Ends
+    %th Edit Game
+    %th Players
+  %tbody
+    - @games.each do |g|
+      %tr
+        %td= g.name
+        %td= g.registration_begins.strftime("%b %d %y @ %I:%M %p")
+        %td= g.registration_ends.strftime("%b %d %y @ %I:%M %p")
+        %td= g.game_begins.strftime("%b %d %y @ %I:%M %p")
+        %td= g.game_ends.strftime("%b %d %y @ %I:%M %p")
+        - if can?(:manage, g)
+          %td
+            %a.btn.btn-primary{:href => admin_game_url(g)} Edit
+          %td
+            %a.btn{:href => players_admin_game_url(g)} View Players
+        - else
+          %td
+            %a.btn.disabled Edit
+          %td
+            %a.btn.disabled View Players
+- if can?(:create, Game)
+  .form-actions
+    %a.btn{ :href => new_admin_game_url } Create New Game
+All times EST

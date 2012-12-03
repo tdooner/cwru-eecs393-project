@@ -1,29 +1,6 @@
 -content_for :stylesheets do
   =stylesheet_link_tag 'homepage'
-/
-  %h2 Player List
-  %table
-    %thead
-      %th Name
-      %th Email
-      %th Points
-      %th Admin
-      %th Editable
-    %tbody
-      -@players.each do |p|
-        %tr
-          %td= p.user.name
-          %td= p.user.email
-          %td= p.points
-          %td= p.game_admin? or p.user.site_admin?
-          %td= can? :edit, p
 %h2 Game List
 %ul
 -@games.each do |g|
   %li= link_to g.name, game_url(g)
-/
-  :markdown
-    For now, to create a new player, enter the Mongo database
-        mongo [database_name]
-    and do something like
-        db.players.insert({name: 'name here', caseid: 'caseid here'})

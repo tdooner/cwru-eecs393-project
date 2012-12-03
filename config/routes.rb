@@ -15,6 +15,15 @@ ZombieGameEngine::Application.routes.draw do
 
   resources :users
 
+  namespace :admin do
+      resources :games do
+        member do
+          get :players
+        end
+      end
+      resources :players
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

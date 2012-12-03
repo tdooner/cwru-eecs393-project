@@ -1,5 +1,6 @@
 class Game
   include MongoMapper::Document
+  plugin MongoMapper::Plugins::MultiParameterAttributes
 
   key :name, String
   key :registration_begins, Time
@@ -14,8 +15,15 @@ class Game
 
   many :all_player_objects, :class_name => 'Player'
   many :squads
+  many :tags
 
   def players
     all_player_objects.where(registered: true)
+  end
+
+  # Returns the effective game-time. This is bounded by game_begins and
+  # game_ends.
+  def time
+    [self.game_begins, [self.game_ends, Time.now].min].max
   end
 end
