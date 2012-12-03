@@ -7,6 +7,4 @@ class Tag
 
   key :datetime, Time
   key :score, Integer
-
-  many :feeds
 end

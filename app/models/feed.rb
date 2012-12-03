@@ -1,8 +1,7 @@
 class Feed
   include MongoMapper::EmbeddedDocument
 
-  belongs_to :fed_by, :class_name => 'Player'
-  has_many :players_fed, :class_name => 'Player'
+  key :datetime
 
-  embedded_in :tag
+  belongs_to :tag
 end

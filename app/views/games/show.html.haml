@@ -57,6 +57,7 @@
           .rank{ :class => (rank >= 100) ? ((rank >= 1000) ? 'tiny' : 'small') : '' } #{rank}.
           =image_tag p.user.image_url
           %h4= p.user.name
+          #{p.state}
           #{p.tags.length} tags, #{p.points} points
   .span3
     %h3 Squads

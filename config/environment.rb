@@ -5,4 +5,4 @@ require File.expand_path('../application', __FILE__)
 ZombieGameEngine::Application.initialize!
 
 # Instantiate the engine so it loads the plugins
-ENGINE = ZombieGame::Engine.new
+# ENGINE = ZombieGame::Engine.new
