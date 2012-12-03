@@ -1,0 +1,16 @@
+%h3= @game.name
+
+%table
+  %tbody
+    %tr
+      %td Name
+      %td Points
+      %td Squad
+      %td Admin
+    - @players.each do |p|
+      %tr
+        %td
+          %a{:href => admin_player_url(p)}= User.find(p.user_id).name
+        %td= p.points
+        %td= p.squad
+        %td= p.game_admin

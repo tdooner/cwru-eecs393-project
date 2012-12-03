@@ -1,0 +1,24 @@
+%a{:href => new_admin_game_url()} Create new game
+.row
+  .span12
+    Current games:
+%table
+  %tbody
+    %tr
+      %td Name
+      %td Registration Starts
+      %td Registration Ends
+      %td Game Starts
+      %td Game Ends
+      %td
+    - @games.each do |g|
+      %tr
+        %td
+          %a{:href => admin_game_url(g)}= g.name
+        %td= g.registration_begins.strftime("%b %d %y @ %I:%M %p")
+        %td= g.registration_ends.strftime("%b %d %y @ %I:%M %p")
+        %td= g.game_begins.strftime("%b %d %y @ %I:%M %p")
+        %td= g.game_ends.strftime("%b %d %y @ %I:%M %p")
+        %td
+          %a{:href => players_admin_game_url(g)}= 'View Players'
+All times EST

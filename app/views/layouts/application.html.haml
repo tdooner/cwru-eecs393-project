@@ -22,11 +22,7 @@
                 %li= link_to 'Log Out', destroy_user_session_path
               - else
                 %li= link_to 'Log in with Facebook', user_omniauth_authorize_path(:facebook)
-    -[:error, :alert, :notice].each do |type|
-      - if flash[type]
-        .error-bar{ :class => type.to_s }
-          .container
-            =flash[type]
+    =render 'layouts/below_header'
     .container
       .row
         .span12

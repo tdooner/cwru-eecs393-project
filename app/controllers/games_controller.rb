@@ -4,7 +4,9 @@ class GamesController < ApplicationController
   before_filter :set_player
   before_filter :authenticate_user!, :only => [:register, :unregister]
 
-  def show; end
+  def show
+    @players = @game.players.sort(:points.desc)
+  end
 
   def register
     process_steps
@@ -53,7 +55,7 @@ class GamesController < ApplicationController
   end
 
   def set_player
-    if !(@player = Player.where(user_id: current_user.id, game_id: @game.id).first)
+    if current_user && !(@player = Player.where(user_id: current_user.id, game_id: @game.id).first)
       @player = Player.create(registered: false, user_id: current_user.id, game_id: @game.id)
     end
   end

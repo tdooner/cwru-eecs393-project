@@ -10,6 +10,7 @@ class Player
   key :registered, Boolean
   key :off_campus, Boolean # via Engine plugin
   key :game_admin, Boolean
+  key :points, Integer
 
   belongs_to :game
   belongs_to :user
@@ -19,6 +20,7 @@ class Player
 
   ensure_index [[:game_id, 1], [:user_id, 1]], :unique => true
   ensure_index [[:registered, 1]]
+  ensure_index [[:points, -1]]
 
   def signed_waiver?
     waiver.present?

@@ -98,5 +98,4 @@ describe User, '#unregister_for_game' do
         to_not change { Player.count }
     end
   end
-
 end

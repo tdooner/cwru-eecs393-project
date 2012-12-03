@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_time_zone
 
   def set_default_game
-    @default_game = Game.last
+    # TODO: Use the subdomain to determine the current game.
+    @default_game = Game.last || Game.new
   end
 
   def set_time_zone
-    # TODO: Use the subdomain to determine the current game.
     Time.zone = @default_game.time_zone || Time.now.zone
   end
 end

@@ -5,5 +5,6 @@ FactoryGirl.define do
     image_url     'http://google.com/image.png'
     auth_provider 'facebook'
     auth_uid      '1234567890'
+    site_admin    false
   end
 end
