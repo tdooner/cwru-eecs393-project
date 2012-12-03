@@ -1,18 +1,27 @@
 =form_for(@game, :url => admin_game_url(@game)) do |f|
   =@game.inspect()
-  =label_tag 'Name: '
-  =text_field_tag 'game[name]', @game.name
-  =label_tag 'Registration Begins: '
-  =f.datetime_select :registration_begins, { :order => [:month, :day, :year,
-    :hour, :minute] }
-  =label_tag 'Registration Ends: '
-  =f.datetime_select :registration_ends, { :order => [:month, :day, :year,
-    :hour, :minute] }
-  =label_tag 'Game Begins: '
-  =f.datetime_select :game_begins, { :order => [:month, :day, :year,
-    :hour, :minute] }
-  =label_tag 'Game Ends: '
-  =f.datetime_select :game_ends, { :order => [:month, :day, :year,
-    :hour, :minute] }
-
+  .control-group
+    =label_tag :name, 'Name: ', :class => 'control-label'
+    .controls
+      =text_field_tag 'game[name]', @game.name
+  .control-group
+    =label_tag :regbegins, 'Registration Begins: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :registration_begins, { :order => [:month, :day, :year,
+        :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :regends, 'Registration Ends: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :registration_ends, { :order => [:month, :day, :year,
+        :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :gambegins, 'Game Begins: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :game_begins, { :order => [:month, :day, :year,
+        :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :gamends, 'Game Ends: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :game_ends, { :order => [:month, :day, :year,
+        :hour, :minute] }, :class => 'span2'
   =f.submit 'Save'

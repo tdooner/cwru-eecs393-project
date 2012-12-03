@@ -1,0 +1,27 @@
+%h3 Create a new game
+=form_for(@game, :url => admin_games_url()) do |f|
+  .control-group
+    =label_tag :name, 'Name: ', :class => 'control-label'
+    .controls
+      =text_field_tag 'game[name]'
+  .control-group
+    =label_tag :regbegins, 'Registration Begins: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :registration_begins, { :order => [:month, :day, :year,
+        :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :regends, 'Registration Ends: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :registration_ends, { :order => [:month, :day, :year,
+        :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :gambegins, 'Game Begins: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :game_begins, { :order => [:month, :day, :year,
+        :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :gamends, 'Game Ends: ', :class => 'control-label'
+    .controls
+      =f.datetime_select :game_ends, { :order => [:month, :day, :year,
+        :hour, :minute] }, :class => 'span2'
+  =f.submit 'Save'

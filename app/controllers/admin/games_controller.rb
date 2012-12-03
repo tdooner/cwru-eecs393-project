@@ -17,8 +17,17 @@ class Admin::GamesController < ApplicationController
       flash[:notice] = 'Saved!'
       render :edit
     end
-    def new; end
-    def create; end
+    def new
+      @game = Game.new
+    end
+    def create
+      @game = Game.new
+      @game.attributes = params[:game]
+      @game.save(:safe => true)
+      flash[:notice] = 'Game Created!'
+      @games = Game.all
+      render :index
+    end
     def players
       @game = Game.find(params[:id])
       @players = @game.players
