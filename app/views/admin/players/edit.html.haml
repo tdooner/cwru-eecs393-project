@@ -1,8 +1,10 @@
-%h3= @user.name
-=form_for(@player, :url => admin_player_url(@player)) do |f|
+%h3 Editing Player: #{@player.user.name}
+
+#{@player.user.name} is a player in the #{@player.game.name} game.
+
+=form_for(@player, :url => admin_player_url(@player), :html => { :class => 'form-horizontal' }) do |f|
   .control-group
-    =label_tag :player_in, 'A player in the game of ' + @game.name,
-      :class => 'control-label'
+    =label_tag :player_in, 'A player in the game of ' + @player.game.name, :class => 'control-label'
   .control-group
     =label_tag :totpoints, 'Total Points:', :class => 'control-label'
     .controls
