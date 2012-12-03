@@ -7,6 +7,7 @@ class Ability
     # Users can manage themselves but no one else
     cannot :manage, User
     cannot :manage, Player
+    can :read, [User, Player]
     can :manage, User, :id => user.id
     can :manage, Player, :user_id => user.id
 
