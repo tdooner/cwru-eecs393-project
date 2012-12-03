@@ -15,6 +15,7 @@ class Admin::PlayersController < ApplicationController
   def update
     @game = Game.find(params[:id])
     @game.name = params[:name]
+    @game.announcements = params[:announcements]
     @game.save()
     flash[:notice] = 'Saved!'
     render :edit

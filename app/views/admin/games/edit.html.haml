@@ -21,6 +21,10 @@
     =label_tag :game_ends, 'Game Ends: ', :class => 'control-label'
     .controls
       =f.datetime_select :game_ends, { :order => [:month, :day, :year, :hour, :minute] }, :class => 'span2'
+  .control-group
+    =label_tag :announcements, 'Announcements (Textile): ', :class => 'control-label'
+    .controls
+      =f.text_area :announcements, :class => 'span12'
   .form-actions
     =f.submit 'Save', :class => 'btn btn-primary'
     %a.btn{ :href => admin_games_url } Cancel
