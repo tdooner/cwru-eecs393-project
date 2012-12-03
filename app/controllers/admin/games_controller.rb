@@ -1,5 +1,7 @@
 class Admin::GamesController < ApplicationController
   before_filter :set_game, :except => [:index, :new, :create]
+  before_filter :check_permissions, :except => [:index, :new, :create]
+  before_filter :check_create_permissions, :only => [:new, :create]
 
   def show
     # Nothing here -- the admin probably wants to edit the game instead.
@@ -49,5 +51,19 @@ class Admin::GamesController < ApplicationController
 
   def set_game
     @game = Game.find(params[:id])
+  end
+
+  def check_permissions
+    if cannot?(:manage, @game)
+      flash[:error] = 'You do not have permission for that!'
+      redirect_to root_url
+    end
+  end
+
+  def check_create_permissions
+    if cannot?(:create, Game)
+      flash[:error] = 'You do not have permission for that!'
+      redirect_to root_url
+    end
   end
 end
