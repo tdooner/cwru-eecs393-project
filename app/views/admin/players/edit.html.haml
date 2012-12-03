@@ -1,0 +1,15 @@
+=@user.name
+(A human/zombie in the
+=@game.name
+game)
+
+=form_for(@player, :url => admin_player_url(@player)) do |f|
+  =label_tag 'State'
+  =label_tag 'Points'
+  =f.number_field :points, :value => @player.points
+  =label_tag 'Off Campus'
+  =radio_button_tag 'player[off_campus]', :true
+  Yes
+  =radio_button_tag 'player[off_campus]', :false
+  No
+  =f.submit 'Save'

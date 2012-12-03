@@ -1,0 +1,8 @@
+%table
+  %tbody
+    - @games.each do |g|
+      %tr
+        %td
+          %a{:href => admin_game_url(g)}= g.name
+        %td
+          %a{:href => players_admin_game_url(g)}= 'View Players'
