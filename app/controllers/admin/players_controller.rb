@@ -10,13 +10,21 @@ class Admin::PlayersController < ApplicationController
 
   def edit
     @player = Player.find(params[:id])
+    @squads = Game.find(@player.game_id).squads
   end
 
   def update
-    @game = Game.find(params[:id])
-    @game.name = params[:name]
-    @game.save()
-    flash[:notice] = 'Saved!'
+    @player = Player.find(params[:id])
+    @player.attributes = params[:player]
+
+    begin
+      @player.save(:safe => true)
+      flash[:notice] = 'Saved!'
+    rescue
+      flash[:error] = 'An error occurred! Could not save!'
+    end
+
+    @squads = Game.find(@player.game_id).squads
     render :edit
   end
 
