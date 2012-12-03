@@ -1,0 +1,38 @@
+:css
+  .game_history {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .game_history li {
+    margin: 20px 0;
+    padding: 0;
+    display: block;
+    clear: both;
+    overflow: auto;
+  }
+  .profile img {
+    float: left;
+    margin: 0 15px;
+  }
+  .player h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.5em;
+    padding: 0; margin: 0;
+  }
+.profile.row
+  =image_tag @user.image_url
+  %h2= @user.name
+.row
+  .span6
+    %h3 Games
+    %ul.game_history
+      - @players.each do |p|
+        %li.player
+          %h4=link_to p.game.name, game_url(p.game)
+          17 tags, #{p.points} points
+  - if can? :edit, @user
+    .span6
+      Edit template should go here.

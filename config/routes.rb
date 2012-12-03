@@ -13,6 +13,8 @@ ZombieGameEngine::Application.routes.draw do
     end
   end
 
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

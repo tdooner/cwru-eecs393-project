@@ -56,7 +56,7 @@
         %li.player
           .rank{ :class => (rank >= 100) ? ((rank >= 1000) ? 'tiny' : 'small') : '' } #{rank}.
           =image_tag p.user.image_url
-          %h4= p.user.name
+          %h4=link_to p.user.name, user_url(p.user)
           17 tags, #{p.points} points
 %h3 Registration
 -if user_signed_in?
