@@ -4,14 +4,24 @@
 
 =form_for(@player, :url => admin_player_url(@player), :html => { :class => 'form-horizontal' }) do |f|
   .control-group
-    =label_tag :player_in, 'A player in the game of ' + @player.game.name, :class => 'control-label'
-  .control-group
     =label_tag :totpoints, 'Total Points:', :class => 'control-label'
     .controls
       =f.number_field :points, :value => @player.points, :class => 'span1'
   .control-group
-    =label_tag :iscommuter, 'Commuter?', :class => 'control-label'
+    =label_tag :squad, 'Squad:', :class => 'control-label'
     .controls
-      =radio_button_tag 'player[off_campus]', :true, true, :class => 'span1'
-      =radio_button_tag 'player[off_campus]', :false, false, :class => 'span1'
+      =f.select :squad_id, options_for_select(@squads.collect {|s| [s.name,
+        s.id]}, @player.squad.id)
+  .control-group
+    =label_tag :isoz, 'Is OZ?', :class => 'control-label'
+    .controls
+      =f.check_box :oz
+  .control-group
+    =label_tag :iscommuter, 'Is Off Campus?', :class => 'control-label'
+    .controls
+      =f.check_box :off_campus
+  .control-group
+    =label_tag :isadmin, 'Admins game?', :class => 'control-label'
+    .controls
+      =f.check_box :game_admin
   =f.submit 'Save'
